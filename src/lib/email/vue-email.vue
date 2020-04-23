@@ -29,12 +29,19 @@ export default {
             type: Array,
             default: () => ['@qq.com', '@126.com', '@163.com', '@hotmail.com', '@sina.com', '@sohu.com', '@yahoo.com', '@139.com', '@189.cn', '@gmail.com']
         },
+        initEmail:{
+            type: String,
+            default: ''
+        }
     },
     data() {
         return {
             showEmailPicker: false,
             emailData: ''
         }
+    },
+    mounted(){
+        this.emailData = this.initEmail;
     },
     computed: {
         emailSuffixList() {

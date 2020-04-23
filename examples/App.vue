@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    <v-email @email_data='getEmail'></v-email>
+    <v-email @email_data='getEmail' initEmail='test@qq.com'></v-email>
 </div>
 </template>
 
