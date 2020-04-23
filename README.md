@@ -1,19 +1,20 @@
-# v-email
+# VUE Email 自动填充
 
-## Project setup
+## 使用步骤：
+>1.安装
 ```
-npm install
+npm i v-email --save
 ```
-
-### Compiles and hot-reloads for development
+>2.引入
 ```
-npm run serve
+import vEmail from 'v-email'
+Vue.use(vEmail)
 ```
-
-### Compiles and minifies for production
+>3.使用
 ```
-npm run build
+ <v-email @email_data='getEmail'></v-email>
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
++ className:上层样式
++ childClassName：提示样式
++ emailSuffixs: 提示默认后缀 --['@qq.com', '@126.com', '@163.com', '@hotmail.com', '@sina.com', '@sohu.com', '@yahoo.com', '@139.com', '@189.cn', '@gmail.com']
++ 父节点获取email内容：@email_data
