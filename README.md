@@ -21,3 +21,4 @@ Vue.use(vEmail)
 + emailSuffixs: 提示默认后缀
 ['@qq.com', '@126.com', '@163.com', '@hotmail.com', '@sina.com', '@sohu.com', '@yahoo.com', '@139.com', '@189.cn', '@gmail.com']
 ```
+![v-email](https://bt-cloud-platform.oss-cn-shanghai.aliyuncs.com/avatar/v-email.gif)
