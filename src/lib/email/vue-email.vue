@@ -1,8 +1,7 @@
 <template>
-<div :class="className">
-    <!-- <van-field label="电子邮箱" v-model="emailData" placeholder="用于接收电子保单邮箱" @input="changeEmail" autocomplete="new-email" clearable v-if="true"></van-field> -->
-    <input type="text" v-model="emailData" placeholder="用于接收电子保单邮箱" autocomplete="off" />
-    <div :class="childClassName" @click="!showEmailPicker" v-if="showEmailPicker">
+<div :class="dropdownWrapper">
+    <input :class="dropdownInput" type="text" v-model="emailData" @input="changeEmail" :placeholder="holderText" autocomplete="off" />
+    <div :class="dropdownList" @click="!showEmailPicker" v-if="showEmailPicker">
         <ul>
             <li v-for="(key,i) in emailSuffixList" @click="selectEmail(key)">{{key}}</li>
         </ul>
@@ -17,19 +16,27 @@ import {
 export default {
     name: "vEmail",
     props: {
-        className: {
+        dropdownWrapper: {
             type: String,
-            default: 'email-dropdown-wrapper'
+            default: '_email-dropdown-wrapper'
         },
-        childClassName: {
+        dropdownInput: {
             type: String,
-            default: 'email-dropdown-list'
+            default: '_email-dropdown-input'
+        },
+        dropdownList: {
+            type: String,
+            default: '_email-dropdown-list'
+        },
+        holderText:{
+            type: String,
+            default: ''
         },
         emailSuffixs: {
             type: Array,
             default: () => ['@qq.com', '@126.com', '@163.com', '@hotmail.com', '@sina.com', '@sohu.com', '@yahoo.com', '@139.com', '@189.cn', '@gmail.com']
         },
-        initEmail:{
+        initEmail: {
             type: String,
             default: ''
         }
@@ -40,7 +47,7 @@ export default {
             emailData: ''
         }
     },
-    mounted(){
+    mounted() {
         this.emailData = this.initEmail;
     },
     computed: {
@@ -70,29 +77,21 @@ export default {
         }
 
     },
-    watch: {
-        emailData: {
-            handler(value) {
-                if (value.length > 1) {
-                    if (matchedEmail(value)) {
-                        this.showEmailPicker = false
-                    } else {
-                        this.showEmailPicker = true
-                    }
 
-                } else {
-                    this.showEmailPicker = false
-                }
-            }
-
-        }
-    },
     methods: {
         selectEmail(key) {
             //传值
             this.$emit('email_data', key);
             this.emailData = key;
             this.showEmailPicker = false
+        },
+        changeEmail(event) {
+            let value = event.target.value;
+            if (value.length > 1) {
+                this.showEmailPicker = true
+            } else {
+                this.showEmailPicker = false
+            }
         }
     }
 
@@ -100,10 +99,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.email-dropdown-wrapper {
+._email-dropdown-wrapper {
     position: relative;
 
-    .email-dropdown-list {
+    ._email-dropdown-input {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        color: #323233;
+        line-height: inherit;
+        text-align: right;
+        background-color: transparent;
+        border: 0;
+        resize: none;
+    }
+
+    ._email-dropdown-list {
         width: 200px;
         text-align: right;
         position: absolute;
@@ -115,6 +129,7 @@ export default {
         box-shadow: 0 4px 8px #ebedf0;
         max-height: 140px;
         transition: all 1s ease;
+        right: 0;
 
         li {
             color: #666;
@@ -127,7 +142,6 @@ export default {
     &:after {
         position: absolute;
         box-sizing: border-box;
-        content: ' ';
         pointer-events: none;
         right: 0;
         bottom: 0;

@@ -1,12 +1,13 @@
 {
   "name": "v-email",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "homepage": "https://github.com/Ken-LK/v-email/blob/master/README.md",
   "keywords": [
     "vue email",
     "email vue",
     "v-email"
   ],
+  "main": "src/lib/email/index.js",
   "author": "Ken <ken_lk@126.com>,Lao Wang",
   "repository": {
     "type": "git",
