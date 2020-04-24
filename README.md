@@ -13,12 +13,11 @@ Vue.use(vEmail)
 >3.使用
 ```
  <v-email @email_data='getEmail'></v-email>
-
+```
 + className:上层样式
 + childClassName：提示样式
 + 父节点获取email内容：@email_data
 + 初始化email内容：initEmail
 + emailSuffixs: 提示默认后缀
-['@qq.com', '@126.com', '@163.com', '@hotmail.com', '@sina.com', '@sohu.com', '@yahoo.com', '@139.com', '@189.cn', '@gmail.com']
-```
-![v-email](https://bt-cloud-platform.oss-cn-shanghai.aliyuncs.com/avatar/v-email.gif)
+
+![v-email](https://bt-cloud-platform.oss-cn-shanghai.aliyuncs.com/avatar/v-email-gif.gif)
